@@ -73,7 +73,9 @@ twitter will be used for user related queries. TwitterAPI for streaming (fetchin
 This has nothing to do with the fact that we're using more than one API wrapper to access Twitter data. 
 
 4 -> twitter for user searches
+
 1 -> TwitterApi for streaming
+
 10 -> t for network graph analysis 
 
  Further note on API use...industrial social media listening platforms may use hundreds (or more) Twitter API keys at any given point in time. I question the merits of such an approach for commercial purpose, but we are solely interested in research here. 
