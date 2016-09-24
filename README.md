@@ -16,6 +16,7 @@ At the moment these scripts are focused on network activity and user. There is o
 
 (content summary tables will be added later)
 
+
 ### getting started 
 
 1. Configuration
@@ -35,14 +36,14 @@ At the moment these scripts are focused on network activity and user. There is o
   2.2 start the main process (execute run.sh)
   
   2.3 access outputs in .csv files named according to the keywords 
+  
 
-Note that step 2.2 and 2.3 might take some time depending on the size of your dataset. 
-
-There will be two separate .csv files for each keyword
+NOTE: Step 2.2 and 2.3 might take some time depending on the size of your dataset. There will be two separate .csv files for each keyword
 
 - user level data  (for all users tweeting the topic) 
 
 - network level data (aggregate for the keyword in 10 minute intervals)
+
 
 ### what can be configured? 
 
@@ -52,9 +53,11 @@ There will be two separate .csv files for each keyword
 - api keys
 - upstart or similar / crontab 
 
+
 ### server configuration
 
 Other than setting up upstart on the server that takes care of the TwitterApi streaming API connection for collecting tweets
+
 
 ### dependencies 
 
@@ -64,7 +67,8 @@ Other than setting up upstart on the server that takes care of the TwitterApi st
 
 twitter will be used for user related queries. TwitterAPI for streaming (fetching tweets in an on-going manner from the Twitter Streaming API), and t for network graph related searches. 
 
-##### For the current configuration, you'll need 15 Twitter API accounts. 
+
+##### IMPORTANT: For the current configuration, you'll need 15 Twitter API accounts. 
 
 This has nothing to do with the fact that we're using more than one API wrapper to access Twitter data. 
 
@@ -74,7 +78,7 @@ This has nothing to do with the fact that we're using more than one API wrapper 
 
  Further note on API use...industrial social media listening platforms may use hundreds (or more) Twitter API keys at any given point in time. I question the merits of such an approach for commercial purpose, but we are solely interested in research here. 
 
-### the scripts 
+#### the scripts 
 
 ##### run.sh 
 
@@ -93,5 +97,13 @@ Handles network graph analysis. Note that this is not scalable at all in the cur
 This is where most of the functions reside. All of the functions related to "network" aspect can be found here. 
 
 ##### untitled-users.sh
+
+The main script handling users API calls to Twitter and the processing of the data that comes in return.  
+
 ##### untitled-users.py
+
+The script that handles that actual Twitter API connection. 
+
 ##### untitled-entropy.r 
+
+Very simple R script that estimates Shannon entropy of a string
