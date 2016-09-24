@@ -2,7 +2,7 @@
 	
 	DAY=$(date +%b-%d -d "yesterday")
 
-for CANDIDATE in TRUMP HILLARY; 
+for KEYWORD in TRUMP HILLARY; 
 do
 	_data-prep_
 
@@ -18,7 +18,7 @@ do
 			_network-data_
 			eval "$(_env_)"
 			_export-csv_
-			rm "$CANDIDATE".bash
+			rm "$KEYWORD".bash
 		done
 	done
 done
