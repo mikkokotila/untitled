@@ -19,12 +19,14 @@ At the moment these scripts are focused on network activity and user. There is o
 ### getting started 
 
 1. Configuration
+  
   1.1 setting up keywords  
   1.2 setting up and/or configuring api access keys 
   1.3 setting up upstart or similar (or crontab)
   1.4 configure network analysis complexity [OPTIONAL]
     
 2. Process cycle
+
   2.1 start collecting tweets (start the upstart service) 
   2.2 start the main process (execute run.sh)
   2.3 access outputs in .csv files named according to the keywords 
