@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>untitled by mikkokotila</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>untitled</h1>
+        <h2>advanced twitter research</h2>
+        <a href="https://github.com/mikkokotila/untitled" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="untitled----advanced-twitter-research" class="anchor" href="#untitled----advanced-twitter-research" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>untitled -- advanced twitter research</h1>
+
+<h3>
+<a id="what-is-it" class="anchor" href="#what-is-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>what is it</h3>
+
+<p>untitled is an open-source solution for advanced analysis of high volume keywords in Twitter. The basic premise is that you choose 1 or more keywords and get rich and very high quality signal taxonomy with over 50 signals in clean csv format. I've left the analysis for you. </p>
+
+<p>Twitter data can be analysed from three different "point of views". </p>
+
+<p>1) network activity</p>
+
+<p>2) user </p>
+
+<p>3) content</p>
+
+<p>At the moment these scripts are focused on network activity and user. There is one output format where a row represents an aggregate of the network in a given time interval, and other where a row represents stats for a given user. </p>
+
+<p>(content summary tables will be added later)</p>
+
+<h3>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>getting started</h3>
+
+<ol>
+<li>
+<p>Configuration</p>
+
+<p>1.1 setting up keywords</p>
+
+<p>1.2 setting up and/or configuring api access keys </p>
+
+<p>1.3 setting up upstart or similar (or crontab)</p>
+
+<p>1.4 configure network analysis complexity [OPTIONAL]</p>
+</li>
+<li>
+<p>Process cycle</p>
+
+<p>2.1 start collecting tweets (start the upstart service) </p>
+
+<p>2.2 start the main process (execute run.sh)</p>
+
+<p>2.3 access outputs in .csv files named according to the keywords </p>
+</li>
+</ol>
+
+<p>NOTE: Step 2.2 and 2.3 might take some time depending on the size of your dataset. There will be two separate .csv files for each keyword</p>
+
+<ul>
+<li>user level data  (for all users tweeting the topic) </li>
+<li>network level data (aggregate for the keyword in 10 minute intervals)</li>
+</ul>
+
+<h3>
+<a id="what-can-be-configured" class="anchor" href="#what-can-be-configured" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>what can be configured?</h3>
+
+<ul>
+<li>keywords</li>
+<li>network statistics time interval (default is 10 minutes) </li>
+<li>network graph analysis complexity</li>
+<li>api keys</li>
+<li>upstart or similar / crontab </li>
+</ul>
+
+<h3>
+<a id="server-configuration" class="anchor" href="#server-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>server configuration</h3>
+
+<p>Other than setting up upstart on the server that takes care of the TwitterApi streaming API connection for collecting tweets</p>
+
+<h3>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>dependencies</h3>
+
+<pre><code>ruby gem install t
+pip install twitter
+pip install TwitterAPI 
+</code></pre>
+
+<p>twitter will be used for user related queries. TwitterAPI for streaming (fetching tweets in an on-going manner from the Twitter Streaming API), and t for network graph related searches. </p>
+
+<h5>
+<a id="important-for-the-current-configuration-youll-need-15-twitter-api-accounts" class="anchor" href="#important-for-the-current-configuration-youll-need-15-twitter-api-accounts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>IMPORTANT: For the current configuration, you'll need 15 Twitter API accounts.</h5>
+
+<p>This has nothing to do with the fact that we're using more than one API wrapper to access Twitter data. </p>
+
+<p>4 -&gt; twitter for user searches</p>
+
+<p>1 -&gt; TwitterApi for streaming</p>
+
+<p>10 -&gt; t for network graph analysis </p>
+
+<p>Further note on API use...industrial social media listening platforms may use hundreds (or more) Twitter API keys at any given point in time. I question the merits of such an approach for commercial purpose, but we are solely interested in research here. </p>
+
+<h4>
+<a id="the-scripts" class="anchor" href="#the-scripts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>the scripts</h4>
+
+<h5>
+<a id="runsh" class="anchor" href="#runsh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>run.sh</h5>
+
+<p>The main controller script that runs the program. </p>
+
+<h5>
+<a id="untitled-streampy" class="anchor" href="#untitled-streampy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>untitled-stream.py</h5>
+
+<p>Handles tweet collection. This process should be added ideally to upstart or similar. Crontab may do as well, but upstart or similar is much better. </p>
+
+<h5>
+<a id="untitled-graphsh" class="anchor" href="#untitled-graphsh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>untitled-graph.sh</h5>
+
+<p>Handles network graph analysis. Note that this is not scalable at all in the current state, but gives an indication of the 3rd tier graph quality. </p>
+
+<h5>
+<a id="untitled-networksh" class="anchor" href="#untitled-networksh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>untitled-network.sh</h5>
+
+<p>This is where most of the functions reside. All of the functions related to "network" aspect can be found here. </p>
+
+<h5>
+<a id="untitled-userssh" class="anchor" href="#untitled-userssh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>untitled-users.sh</h5>
+
+<p>The main script handling users API calls to Twitter and the processing of the data that comes in return.  </p>
+
+<h5>
+<a id="untitled-userspy" class="anchor" href="#untitled-userspy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>untitled-users.py</h5>
+
+<p>The script that handles that actual Twitter API connection. </p>
+
+<h5>
+<a id="untitled-entropyr" class="anchor" href="#untitled-entropyr" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>untitled-entropy.r</h5>
+
+<p>Very simple R script that estimates Shannon entropy of a string</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/mikkokotila/untitled/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/mikkokotila/untitled/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/mikkokotila/untitled"></a> is maintained by <a href="https://github.com/mikkokotila">mikkokotila</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
