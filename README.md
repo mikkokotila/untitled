@@ -6,8 +6,10 @@ untitled is an open-source solution for advanced analysis of high volume keyword
 
 Twitter data can be analysed from three different "point of views". 
 
-1) network activity 
+1) network activity
+
 2) user 
+
 3) content
 
 At the moment these scripts are focused on network activity and user. There is one output format where a row represents an aggregate of the network in a given time interval, and other where a row represents stats for a given user. 
@@ -17,17 +19,15 @@ At the moment these scripts are focused on network activity and user. There is o
 ### getting started 
 
 1. Configuration
-
-    1.1 setting up keywords  
-    1.2 setting up and/or configuring api access keys 
-    1.3 setting up upstart or similar (or crontab)
-    1.4 configure network analysis complexity [OPTIONAL]
+  1.1 setting up keywords  
+  1.2 setting up and/or configuring api access keys 
+  1.3 setting up upstart or similar (or crontab)
+  1.4 configure network analysis complexity [OPTIONAL]
     
 2. Process cycle
-
-    2.1 start collecting tweets (start the upstart service) 
-    2.2 start the main process (execute run.sh)
-    2.3 access outputs in .csv files named according to the keywords 
+  2.1 start collecting tweets (start the upstart service) 
+  2.2 start the main process (execute run.sh)
+  2.3 access outputs in .csv files named according to the keywords 
 
 Note that step 2.2 and 2.3 might take some time depending on the size of your dataset. 
 
