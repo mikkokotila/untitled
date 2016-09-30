@@ -109,3 +109,7 @@ The script that handles that actual Twitter API connection.
 ##### untitled-entropy.r 
 
 Very simple R script that estimates Shannon entropy of a string
+
+##### untitled-tweets-total.r
+
+Creates an output with hourly total tweets for a range of days
